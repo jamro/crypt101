@@ -1,0 +1,13 @@
+html, body, main {
+  height: 100%;
+}
+
+#side-panel {
+  position: fixed;
+  width: 200px;
+  height: 100%;
+}
+
+#content {
+  margin-left: 200px;
+}

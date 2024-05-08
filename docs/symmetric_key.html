@@ -1,0 +1,73 @@
+
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>Crypt101</title>
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="./css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <main class="d-flex flex-nowrap">
+      <div id="side-panel" class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark">
+        <a href="./index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <span id="side-title" class="fs-4">Crypt 101</span>
+        </a>
+        <hr>
+        <ul id="side-menu" class="nav nav-pills flex-column mb-auto">
+
+        </ul>
+      </div>
+      <div id="content" class="p-3 ps-5">
+        <h1>Symmetric Key Encryption</h1>
+        <p>
+          Symmetric key encryption is a type of encryption where the same key is used for both encrypting and decrypting the data. 
+          This means that the sender and the recipient must both have access to the same key in order to communicate securely.
+        </p>
+        <p>
+          Symmetric key encryption is typically faster and more efficient compared to asymmetric encryption, where different keys 
+          are used for encryption and decryption. However, the challenge with symmetric key encryption lies in securely sharing 
+          the key between the sender and the recipient to maintain the confidentiality of the communication.
+        </p>
+        <h1>Caesar Cipher</h1>
+        <p>
+          The Caesar Cipher is a simple example of symmetric key encryption. In this encryption technique, each letter in the plaintext 
+          is shifted a certain number of places down or up the alphabet.
+        </p>
+        <p>
+          For example, if we shift each letter in the alphabet by <strong>3 positions</strong>:
+        </p>
+        <ul>
+          <li>A becomes D</li>
+          <li>B becomes E</li>
+          <li>C becomes F</li>
+          <li>and so on...</li>
+        </ul>
+        <p>
+          To encrypt a message using the Caesar Cipher, you choose a shift value (let's say 3 for this example) 
+          and then replace each letter in the plaintext with the letter that appears three positions down the alphabet.
+        </p>
+        <p>
+          For instance, if we want to encrypt the message <code>"HELLO"</code> with a shift of 3, it becomes <code>"KHOOR"</code>.
+        </p>
+        <p>
+          To decrypt the message, the recipient would need to know the shift value (3 in this case) and 
+          simply shift each letter in the ciphertext back up the alphabet by the same amount to 
+          reveal the original message.
+        </p>
+        <p>
+          Since both encryption and decryption rely on the same shift value, the Caesar Cipher is considered a symmetric 
+          key encryption technique.
+        </p>
+      </div>
+    </main>
+    <script src="./js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="./js/sidemenu.js"></script>
+  </body>
+</html>
