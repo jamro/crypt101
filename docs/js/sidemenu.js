@@ -10,7 +10,7 @@ function addMenuLink(title, file) {
 
 
 $(document).ready(function() {
-  $('#side-title').text('Crypt 101')
+  $('#side-title').html('<span class="material-icons">security</span> Crypt 101')
   addMenuLink('Welcome', 'index.html')
   addMenuLink('Symmetric Key', 'symmetric_key.html')
 })
