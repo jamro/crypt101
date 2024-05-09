@@ -91,7 +91,186 @@
           The ciphertext is raised to the power of the private key, and divided by the modulus. 
           The remainder of this division (or modulus operation) is the decrypted message or the plaintext.
         </p>
-        <h2>Text Processing in RSA Encryption</h2>
+        <h1 class="mt-5">Example</h1>
+        <h2 class="example-chapter">STEP 1: Generate Keys</h2>
+        <div class="chat-row">
+          <div class="persona-container">
+            <div class="material-icons-outlined persona-icon text-bg-success">face_4</div>
+            <div class="persona-label">Alice</div>
+          </div>
+          <div class="chat-msg">
+            <div class="chat-cloud">
+              Alright, let's do the math to generate our RSA keys. I wll start by choosing two prime numbers, <code>p = 3</code> and <code>q = 11</code>.
+            </div>
+          </div>
+        </div>
+        <div class="chat-row">
+          <div class="persona-container">
+            <div class="material-icons-outlined persona-icon text-bg-success">face_4</div>
+            <div class="persona-label">Alice</div>
+          </div>
+          <div class="chat-msg">
+            <div class="chat-cloud">
+              First, I calculate <code>n = p * q = 3 * 11 = 33</code>. This will be our modulus for both the public and private keys.
+            </div>
+          </div>
+        </div>
+        <div class="chat-row">
+          <div class="persona-container">
+            <div class="material-icons-outlined persona-icon text-bg-success">face_4</div>
+            <div class="persona-label">Alice</div>
+          </div>
+          <div class="chat-msg">
+            <div class="chat-cloud">
+              Next, I calculate <code>phi = (p-1) * (q-1) = 2 * 10 = 20</code>. This is the count of numbers that are relatively prime to <code>n</code>.
+            </div>
+          </div>
+        </div>
+        <div class="chat-row">
+          <div class="persona-container">
+            <div class="material-icons-outlined persona-icon text-bg-success">face_4</div>
+            <div class="persona-label">Alice</div>
+          </div>
+          <div class="chat-msg">
+            <div class="chat-cloud">
+              Now, I need to choose a public exponent <code>e</code> that is relatively prime to <code>phi</code>. I'll go with <code>e = 7</code>.
+            </div>
+          </div>
+        </div>
+        <div class="chat-row">
+          <div class="persona-container">
+            <div class="material-icons-outlined persona-icon text-bg-success">face_4</div>
+            <div class="persona-label">Alice</div>
+          </div>
+          <div class="chat-msg">
+            <div class="chat-cloud">
+              Lastly, I calculate the private exponent <code>d</code> such that <code>(d * e) % phi = 1</code>. In this case, <code>d = 3</code>.
+            </div>
+          </div>
+        </div>
+        <div class="chat-row">
+          <div class="persona-container">
+            <div class="material-icons-outlined persona-icon text-bg-success">face_4</div>
+            <div class="persona-label">Alice</div>
+          </div>
+          <div class="chat-msg">
+            <div class="chat-cloud">
+              My public key is <code>(e=7, n=33)</code> and the private key is <code>(d=3, n=33)</code>. We're all set!
+            </div>
+          </div>
+        </div>
+
+        <h2 class="example-chapter">STEP 2: Encrypt Message</h2>
+        <div class="chat-row">
+          <div class="persona-container">
+            <div class="material-icons-outlined persona-icon text-bg-success">face_4</div>
+            <div class="persona-label">Alice</div>
+          </div>
+          <div class="chat-msg">
+            <div class="chat-cloud">
+              I'll share my public key <code>(e=7, n=33)</code> with Bob so he can encrypt messages for me.
+            </div>
+          </div>
+        </div>
+        <div class="com-row">
+          <div class="persona-container">
+            <div class="material-icons-outlined persona-icon text-bg-success">face_4</div>
+            <div class="persona-label">Alice</div>
+          </div>
+          <div class="com-arrow">
+            <div class="com-msg">Public Key: <strong>[7, 33]</strong></div>
+            <div class="com-arrow-head"></div>
+          </div>
+          <div class="persona-container">
+            <div class="material-icons-outlined persona-icon text-bg-warning">face_5</div>
+            <div class="persona-label">Bob</div>
+          </div>
+        </div>
+        <div class="chat-row">
+          <div class="chat-msg-right">
+            <div class="chat-cloud">
+              Got it, Alice. I'll use your public key <code>(e=7, n=33)</code> to encrypt messages for you.
+            </div>
+          </div>
+          <div class="persona-container">
+            <div class="material-icons-outlined persona-icon text-bg-warning">face_5</div>
+            <div class="persona-label">Bob</div>
+          </div>
+        </div>
+        <div class="chat-row">
+          <div class="chat-msg-right">
+            <div class="chat-cloud">
+              I'll encrypt the message <code>14</code> using your public key.
+            </div>
+          </div>
+          <div class="persona-container">
+            <div class="material-icons-outlined persona-icon text-bg-warning">face_5</div>
+            <div class="persona-label">Bob</div>
+          </div>
+        </div>
+        <div class="chat-row">
+          <div class="chat-msg-right">
+            <div class="chat-cloud">
+              <p>
+                To encrypt the message <code>14</code>, I'll raise it to the power of <code>7</code> and take the remainder when divided by <code>33</code>.
+              </p>
+              <p>
+                <code>14^7 % 33 = 20</code>
+              </p>
+            </div>
+          </div>
+          <div class="persona-container">
+            <div class="material-icons-outlined persona-icon text-bg-warning">face_5</div>
+            <div class="persona-label">Bob</div>
+          </div>
+        </div>
+        <div class="com-row">
+          <div class="persona-container">
+            <div class="material-icons-outlined persona-icon text-bg-success">face_4</div>
+            <div class="persona-label">Alice</div>
+          </div>
+          <div class="com-arrow">
+            <div class="com-arrow-head"></div>
+            <div class="com-msg">Encrypted Message: <strong>20</strong></div>
+          </div>
+          <div class="persona-container">
+            <div class="material-icons-outlined persona-icon text-bg-warning">face_5</div>
+            <div class="persona-label">Bob</div>
+          </div>
+        </div>
+
+        <h2 class="example-chapter">STEP 3: Decrypt Message</h2>
+        <div class="chat-row">
+          <div class="persona-container">
+            <div class="material-icons-outlined persona-icon text-bg-success">face_4</div>
+            <div class="persona-label">Alice</div>
+          </div>
+          <div class="chat-msg">
+            <div class="chat-cloud">
+              <p>
+                I'll use my private key <code>(d=3, n=33)</code> to decrypt the message <code>20</code> from Bob.
+              </p>
+              <p>
+                To do so, I'll raise it to the power of <code>3</code> and take the remainder when divided by <code>33</code>.
+              </p>
+              <p>
+                <code>20^3 % 33 = 14</code>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="chat-row">
+          <div class="persona-container">
+            <div class="material-icons-outlined persona-icon text-bg-success">face_4</div>
+            <div class="persona-label">Alice</div>
+          </div>
+          <div class="chat-msg">
+            <div class="chat-cloud">
+              Yeah, I got the message <code>14</code> from Bob. Thanks for the secure communication!
+            </div>
+          </div>
+        </div>
+        <h2 class="mt-5">Text Processing in RSA Encryption</h2>
         <p>
           In RSA encryption, a plaintext message needs to be converted into numeric form, since RSA fundamentally operates on numbers, not text. 
           This conversion is typically done through a process called <strong>encoding</strong>. Each character in your message might be 
