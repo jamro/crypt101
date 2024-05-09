@@ -1,0 +1,112 @@
+
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>Crypt101</title>
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="./iconfont/material-icons.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <main class="d-flex flex-nowrap">
+      <div id="side-panel" class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark">
+        <a href="./index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <span id="side-title" class="fs-4">Crypt 101</span>
+        </a>
+        <hr>
+        <ul id="side-menu" class="nav nav-pills flex-column mb-auto">
+
+        </ul>
+      </div>
+      <div id="content" class="p-3 ps-5">
+        <h1>Asymmetric Key Encryption</h1>
+        <p>
+          Asymmetric key encryption is a method of secure communication that uses a pair of keys: 
+        </p>
+        <ul>
+          <li><strong>public key</strong>, which everyone has access to, </li>
+          <li><strong>private key</strong>, which is kept secret by the user</li>
+        </ul>
+        <p>
+          When someone wants to send a secure message, they encrypt it using the recipient's <strong>public key</strong>. 
+          Once encrypted, this message can only be decrypted with the recipient's <strong>private key</strong>. This ensures 
+          that even if someone intercepts the encrypted message, they cannot decrypt it without the <strong>private key</strong>. 
+          This provides a powerful form of security in digital communications.
+        </p>
+        <h1>RSA Algorithm</h1>
+        <p>
+          RSA encryption is a type of public key cryptography developed by <strong>Rivest, Shamir, and Adleman</strong>. 
+          It's built upon the mathematical challenge of factoring large composite numbers into their prime factors, 
+          specifically the product of two large prime numbers. This creation of the public and private key pair involves 
+          choosing these two large prime numbers and keeping them secret. A derivative number related to these primes is published as 
+          the public key.
+        </p>
+        <p>
+          Significantly, the security strength of the RSA system comes from the inherent difficulty and high computational cost 
+          associated with the factorization of these large composite numbers. Thus, if large enough prime numbers are used, 
+          the task of breaking RSA encryption becomes computationally infeasible, ensuring a robust security structure.
+        </p>
+        <p>
+          RSA cryptography works in three main steps: key generation, encryption, and decryption. 
+        </p>
+        <h2>Key Generation</h2>
+        <p>
+          Key generation in RSA is a critical step involving several actions. First, two random <strong>prime</strong> numbers are selected, 
+          usually designated as <code>p</code> and <code>q</code>. These should be of substantial size to ensure the security of the system. 
+          They are then multiplied together to give a new number, <code>n = p * q</code>, creating the modulus for both the public and private keys.
+        </p>
+        <p>
+          Second, a calculation for a value known as <code>phi</code> is performed. This is <code>phi = (p-1)*(q-1)</code> and represents 
+          the count of numbers that are relatively prime to <code>n</code>.
+        </p> 
+        <p>
+          Third, a public exponent (often denoted as <code>e</code>) is chosen that has no factors in common with <code>(p-1)(q-1)</code> other than 
+          <code>1</code>, which means it's relatively prime to <code>phi</code>. Often, <code>65537</code> is used as it is a prime number and makes 
+          computation easier due to its form as a power of <code>2</code>.
+        </p>
+        <p>
+          Lastly, the private key <code>d</code> is calculated. It is the multiplicative inverse of the public exponent modulo <code>phi</code>. 
+          This means, <code>(d * e) % phi = 1</code>. The private key <code>d</code> is kept secret.
+        </p>
+        <p>
+          Thus, the public key consists of <code>n</code> and <code>e</code>, and the private key is <code>d</code>. The security of RSA rests 
+          largely on the difficulty in factoring the modulus <code>n</code> (product of <code>p</code> and <code>q</code>) back into its 
+          constituent prime numbers <code>p</code> and <code>q</code>.
+        </p>
+        <h2>Encryption</h2>
+        <p>
+          The sender uses the recipient's public key (public exponent <code>e</code> and modulus <code>n</code> ) to encrypt the message. 
+          The plaintext message is raised to the power of the public exponent, and the result is then divided by the modulus. 
+          The remainder of this division (or modulus operation) is the encrypted message or the ciphertext.
+        </p>
+        <h2>Decryption</h2>
+        <p>
+          The recipient uses their private key to decrypt the encrypted message (private exponent <code>d</code> and modulus <code>n</code> ). 
+          The ciphertext is raised to the power of the private key, and divided by the modulus. 
+          The remainder of this division (or modulus operation) is the decrypted message or the plaintext.
+        </p>
+        <h2>Text Processing in RSA Encryption</h2>
+        <p>
+          In RSA encryption, a plaintext message needs to be converted into numeric form, since RSA fundamentally operates on numbers, not text. 
+          This conversion is typically done through a process called <strong>encoding</strong>. Each character in your message might be 
+          represented as an ASCII value, a system in which each character is represented by a unique number. 
+        </p>
+        <p>
+          For instance, <strong>A</strong> is <code>65</code>, <strong>B</strong> is <code>66</code>, and so on. Alternatively, 
+          Unicode or another standard could be used. After the entire text is converted into a large number, RSA encryption is applied.
+          When the decrypted message is received, it's then <strong>decoded</strong> back into its original text form using the same 
+          character-to-number mapping. This ensures the encrypted numerical message translates back into the correct original text.
+        </p>
+      </div>
+    </main>
+    <script src="./js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="./js/sidemenu.js"></script>
+  </body>
+</html>

@@ -13,5 +13,6 @@ $(document).ready(function() {
   $('#side-title').html('<span class="material-icons">security</span> Crypt 101')
   addMenuLink('Welcome', 'index.html')
   addMenuLink('Symmetric Key', 'symmetric_key.html')
+  addMenuLink('Asymmetric Key', 'asymmetric_key.html')
 })
 
