@@ -25,7 +25,7 @@
         </ul>
       </div>
       <div id="content" class="p-3 ps-5">
-        <h1>Asymmetric Key Encryption</h1>
+        <h1>RSA Basics</h1>
         <p>
           Asymmetric key encryption is a method of secure communication that uses a pair of keys: 
         </p>
@@ -91,7 +91,7 @@
           The ciphertext is raised to the power of the private key, and divided by the modulus. 
           The remainder of this division (or modulus operation) is the decrypted message or the plaintext.
         </p>
-        <h1 class="mt-5">Example</h1>
+        <h1 class="mt-5">Live Example</h1>
         <h2 class="example-chapter">STEP 1: Generate Keys</h2>
         <div class="chat-row">
           <div class="persona-container">
@@ -338,18 +338,6 @@
             </div>
           </div>
         </div>
-        <h2 class="mt-5">Text Processing in RSA Encryption</h2>
-        <p>
-          In RSA encryption, a plaintext message needs to be converted into numeric form, since RSA fundamentally operates on numbers, not text. 
-          This conversion is typically done through a process called <strong>encoding</strong>. Each character in your message might be 
-          represented as an ASCII value, a system in which each character is represented by a unique number. 
-        </p>
-        <p>
-          For instance, <strong>A</strong> is <code>65</code>, <strong>B</strong> is <code>66</code>, and so on. Alternatively, 
-          Unicode or another standard could be used. After the entire text is converted into a large number, RSA encryption is applied.
-          When the decrypted message is received, it's then <strong>decoded</strong> back into its original text form using the same 
-          character-to-number mapping. This ensures the encrypted numerical message translates back into the correct original text.
-        </p>
       </div>
     </main>
     <script src="./js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

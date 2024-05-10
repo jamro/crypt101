@@ -58,8 +58,6 @@ function updateExample1() {
     $('#pq-error').addClass('d-none')
   }
 
-
-
   const n = p * q
   const phi = (p - 1) * (q - 1)
   const e = findE(phi)
@@ -93,4 +91,54 @@ function updateExample1() {
   $('.key-param-phi').text(phi)
   $('.key-param-e').text(e)
   $('.key-param-d').text(d)
+}
+
+
+function updateExample2() {
+const p = Number($('#key-param-p-input').val())
+  const q = Number($('#key-param-q-input').val())
+
+  if(p === q) {
+    $('#key-param-p-input').addClass('border-danger')
+    $('#key-param-q-input').addClass('border-danger')
+    $('#pq-error').removeClass('d-none')
+    return
+  } else {
+    $('#key-param-p-input').removeClass('border-danger')
+    $('#key-param-q-input').removeClass('border-danger')
+    $('#pq-error').addClass('d-none')
+  }
+  
+  const n = p * q
+  const phi = (p - 1) * (q - 1)
+  const e = findE(phi)
+  const d = findD(e, phi)
+
+  const msg = $('#message-input').val()
+  const encoded = msg.split('').map(c => c.charCodeAt(0))
+  const encrypted = encoded.map(c => encryptRsaNumber(c, e, n))
+  const decrypted = encrypted.map(c => encryptRsaNumber(c, d, n))
+  const decoded = decrypted.map(c => String.fromCharCode(c)).join('')
+
+  $('.key-param-n').text(n)
+  $('.key-param-e').text(e)
+  $('.key-param-d').text(d)
+  $('.encoded').text(encoded.join(', '))
+  $('.encrypted').text(encrypted.join(', '))
+  $('.decrypted').text(decrypted.join(', '))
+  $('.decoded').text(decoded)
+}
+
+function generateAsciiTable(tbody) {
+  let table = ''
+  for (let i = 32; i < 124; i += 3) {
+    table += '<tr>'
+    for (let j = 0; j < 3; j++) {
+      let code = i + j
+      let char = String.fromCharCode(code)
+      table += `<td><code>${code}</code></td><td>${char}</td>`
+    }
+    table += '</tr>'
+  }
+  tbody.html(table)
 }

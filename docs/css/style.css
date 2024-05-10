@@ -4,12 +4,12 @@ html, body, main {
 
 #side-panel {
   position: fixed;
-  width: 200px;
+  width: 20em;
   height: 100%;
 }
 
 #content {
-  margin-left: 200px;
+  margin-left: 20em;
 }
 
 .persona-icon {
@@ -49,7 +49,7 @@ html, body, main {
 }
 
 .chat-cloud {
-  background-color: #eee;
+  background-color: #e7e7e7;
   padding: 0.5em;
   border-radius: 0.5em;
 }
@@ -102,6 +102,15 @@ html, body, main {
   border-right: 1em solid #0d6efd;
   top: -1.375em;
   left: -0.5em;
+}
+
+.ellipsis-text {
+  text-overflow: ellipsis; 
+  overflow: hidden; 
+  max-width: 25em; 
+  display: inline-block; 
+  white-space: nowrap; 
+  text-align: left;
 }
 
 h2.example-chapter {
