@@ -100,7 +100,66 @@
           </div>
           <div class="chat-msg">
             <div class="chat-cloud">
-              Alright, let's do the math to generate our RSA keys. I wll start by choosing two prime numbers, <code>p = 3</code> and <code>q = 11</code>.
+              <p>
+                Alright, let's do the math to generate our RSA keys. I wll start by choosing two prime numbers:
+              </p>
+              <p>
+                <code>p = </code><select id="key-param-p-input" class="form-select" style="width: auto; display: inline-block; padding: 0 2em 0 0.5em" onChange="updateExample1()">
+                  <option value="2">2</option>
+                  <option value="3" selected>3</option>
+                  <option value="5">5</option>
+                  <option value="7">7</option>
+                  <option value="11">11</option>
+                  <option value="13">13</option>
+                  <option value="17">17</option>
+                  <option value="19">19</option>
+                  <option value="23">23</option>
+                  <option value="29">29</option>
+                  <option value="31">31</option>
+                  <option value="37">37</option>
+                  <option value="41">41</option>
+                  <option value="43">43</option>
+                  <option value="47">47</option>
+                  <option value="53">53</option>
+                  <option value="59">59</option>
+                  <option value="61">61</option>
+                  <option value="67">67</option>
+                  <option value="71">71</option>
+                  <option value="73">73</option>
+                  <option value="79">79</option>
+                  <option value="83">83</option>
+                  <option value="89">89</option>
+                  <option value="97">97</option>
+                </select>
+                <code>, q = </code><select id="key-param-q-input" class="form-select" style="width: auto; display: inline-block; padding: 0 2em 0 0.5em" onChange="updateExample1()">
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="5">5</option>
+                  <option value="7">7</option>
+                  <option value="11" selected>11</option>
+                  <option value="13">13</option>
+                  <option value="17">17</option>
+                  <option value="19">19</option>
+                  <option value="23">23</option>
+                  <option value="29">29</option>
+                  <option value="31">31</option>
+                  <option value="37">37</option>
+                  <option value="41">41</option>
+                  <option value="43">43</option>
+                  <option value="47">47</option>
+                  <option value="53">53</option>
+                  <option value="59">59</option>
+                  <option value="61">61</option>
+                  <option value="67">67</option>
+                  <option value="71">71</option>
+                  <option value="73">73</option>
+                  <option value="79">79</option>
+                  <option value="83">83</option>
+                  <option value="89">89</option>
+                  <option value="97">97</option>
+                </select>
+                <span id="pq-error" class="badge rounded-pill text-bg-danger ms-2 d-none">'p' and 'q' must be different</span>
+              </p>
             </div>
           </div>
         </div>
@@ -111,7 +170,9 @@
           </div>
           <div class="chat-msg">
             <div class="chat-cloud">
-              First, I calculate <code>n = p * q = 3 * 11 = 33</code>. This will be our modulus for both the public and private keys.
+              First, I calculate 
+              <code>n = p * q = <span class="key-param-p">3</span> * <span class="key-param-q">11</span> = <span class="key-param-n">33</span></code>. 
+              This will be our modulus for both the public and private keys.
             </div>
           </div>
         </div>
@@ -122,7 +183,7 @@
           </div>
           <div class="chat-msg">
             <div class="chat-cloud">
-              Next, I calculate <code>phi = (p-1) * (q-1) = 2 * 10 = 20</code>. This is the count of numbers that are relatively prime to <code>n</code>.
+              Next, I calculate <code>phi = (p-1) * (q-1) = (<span class="key-param-p">3</span>-1) * (<span class="key-param-q">11</span>-1) = <span class="key-param-phi">20</span></code>. This is the count of numbers that are relatively prime to <code>n</code>.
             </div>
           </div>
         </div>
@@ -133,7 +194,7 @@
           </div>
           <div class="chat-msg">
             <div class="chat-cloud">
-              Now, I need to choose a public exponent <code>e</code> that is relatively prime to <code>phi</code>. I'll go with <code>e = 7</code>.
+              Now, I need to choose a public exponent <code>e</code> that is relatively prime to <code>phi</code>. I'll go with <code>e = <span class="key-param-e">3</span></code>.
             </div>
           </div>
         </div>
@@ -144,7 +205,7 @@
           </div>
           <div class="chat-msg">
             <div class="chat-cloud">
-              Lastly, I calculate the private exponent <code>d</code> such that <code>(d * e) % phi = 1</code>. In this case, <code>d = 3</code>.
+              Lastly, I calculate the private exponent <code>d</code> such that <code>(d * e) % phi = 1</code>. In this case, <code>d = <span class="key-param-d">7</span></code>.
             </div>
           </div>
         </div>
@@ -155,7 +216,11 @@
           </div>
           <div class="chat-msg">
             <div class="chat-cloud">
-              My public key is <code>(e=7, n=33)</code> and the private key is <code>(d=3, n=33)</code>. We're all set!
+              My public key is 
+              <code>(e=<span class="key-param-e">3</span>, n=<span class="key-param-n">33</span>)</code> 
+              and the private key is 
+              <code>(d=<span class="key-param-d">7</span>, n=<span class="key-param-n">33</span>)</code>. 
+              We're all set!
             </div>
           </div>
         </div>
@@ -168,7 +233,7 @@
           </div>
           <div class="chat-msg">
             <div class="chat-cloud">
-              I'll share my public key <code>(e=7, n=33)</code> with Bob so he can encrypt messages for me.
+              I'll share my public key <code>(e=<span class="key-param-e">3</span>, n=<span class="key-param-n">33</span>)</code> with Bob so he can encrypt messages for me.
             </div>
           </div>
         </div>
@@ -178,7 +243,7 @@
             <div class="persona-label">Alice</div>
           </div>
           <div class="com-arrow">
-            <div class="com-msg">Public Key: <strong>[7, 33]</strong></div>
+            <div class="com-msg">Public Key: <strong>[<span class="key-param-e">3</span>, <span class="key-param-n">33</span>]</strong></div>
             <div class="com-arrow-head"></div>
           </div>
           <div class="persona-container">
@@ -189,7 +254,7 @@
         <div class="chat-row">
           <div class="chat-msg-right">
             <div class="chat-cloud">
-              Got it, Alice. I'll use your public key <code>(e=7, n=33)</code> to encrypt messages for you.
+              Got it, Alice. I'll use your public key <code>(e=<span class="key-param-e">3</span>, n=<span class="key-param-n">33</span>)</code> to encrypt messages for you.
             </div>
           </div>
           <div class="persona-container">
@@ -200,7 +265,10 @@
         <div class="chat-row">
           <div class="chat-msg-right">
             <div class="chat-cloud">
-              I'll encrypt the message <code>14</code> using your public key.
+              I'll encrypt the message 
+              <input id="msg1" type="number" class="form-control ms-1 me-1" min="0" max="100" value="14" style="width: 5em; display: inline-block; padding: 0 0 0 0.5em; text-align: right"  onChange="updateExample1()"  onKeyUp="updateExample1()"/> 
+              <div id="msg1-error" class="material-icons-outlined text-danger" style="display: none; position: relative; top: 0.25em">error</div> 
+              using your public key.
             </div>
           </div>
           <div class="persona-container">
@@ -212,10 +280,10 @@
           <div class="chat-msg-right">
             <div class="chat-cloud">
               <p>
-                To encrypt the message <code>14</code>, I'll raise it to the power of <code>7</code> and take the remainder when divided by <code>33</code>.
+                To encrypt the message <code class="msg1">14</code>, I'll raise it to the power of <code class="key-param-e">3</code> and take the remainder when divided by <code class="key-param-n">33</code>.
               </p>
               <p>
-                <code>14^7 % 33 = 20</code>
+                <code><span class="msg1">14</span>^<span class="key-param-e">3</span> % <span class="key-param-n">33</span> = <span class="encrypted1">5</span></code>
               </p>
             </div>
           </div>
@@ -231,7 +299,7 @@
           </div>
           <div class="com-arrow">
             <div class="com-arrow-head"></div>
-            <div class="com-msg">Encrypted Message: <strong>20</strong></div>
+            <div class="com-msg">Encrypted Message: <strong class="encrypted1">5</strong></div>
           </div>
           <div class="persona-container">
             <div class="material-icons-outlined persona-icon text-bg-warning">face_5</div>
@@ -248,13 +316,13 @@
           <div class="chat-msg">
             <div class="chat-cloud">
               <p>
-                I'll use my private key <code>(d=3, n=33)</code> to decrypt the message <code>20</code> from Bob.
+                I'll use my private key <code>(d=<span class="key-param-d">7</span>, n=<span class="key-param-n">33</span>)</code> to decrypt the message <code class="encrypted1">20</code> from Bob.
               </p>
               <p>
-                To do so, I'll raise it to the power of <code>3</code> and take the remainder when divided by <code>33</code>.
+                To do so, I'll raise it to the power of <code class="key-param-d">7</code> and take the remainder when divided by <code class="key-param-n">33</code>.
               </p>
               <p>
-                <code>20^3 % 33 = 14</code>
+                <code><span class="encrypted1">5</span>^<span class="key-param-d">7</span> % <span class="key-param-n">33</span> = <span class="decrypted1">14</span></code>
               </p>
             </div>
           </div>
@@ -266,7 +334,7 @@
           </div>
           <div class="chat-msg">
             <div class="chat-cloud">
-              Yeah, I got the message <code>14</code> from Bob. Thanks for the secure communication!
+              Yeah, I got the message <code class="decrypted1">14</code> from Bob. Thanks for the secure communication!
             </div>
           </div>
         </div>
@@ -287,5 +355,11 @@
     <script src="./js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="./js/jquery-3.7.1.min.js"></script>
     <script src="./js/sidemenu.js"></script>
+    <script src="./js/chapters/asymmetric_key.js"></script>
+    <script>
+      $(document).ready(function() {
+        updateExample1()
+      })
+    </script>
   </body>
 </html>

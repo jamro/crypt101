@@ -30,8 +30,3 @@ function updateCaesar() {
   $('.decrypted-value').text(caesarEncrypt(encrypted, -shift))
   
 }
-
-$(document).ready(function() {
-  updateCaesar()
-})
-
