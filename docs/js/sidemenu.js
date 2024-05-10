@@ -8,7 +8,7 @@ function getActiveFile() {
 function addSection(title, id, parent = '#side-menu') {
   return $(parent).append(`
     <li class="mb-1" id="section-${id}">
-      <button class="btn btn-toggle text-white d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#${id}-collapse" aria-expanded="true">
+      <button class="btn btn-toggle text-white d-inline-flex align-items-center rounded border-0 ps-3" data-bs-toggle="collapse" data-bs-target="#${id}-collapse" aria-expanded="true">
         ${title}
       </button>
       <div class="collapse ms-2" id="${id}-collapse" style="font-size: 0.8em">
