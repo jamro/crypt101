@@ -37,13 +37,314 @@
           session, and this key is used to encrypt and decrypt data efficiently. Since symmetric encryption is faster than 
           asymmetric encryption, it is used for encrypting large amounts of data during the secure connection.
         </p>
-        
+        <h1 class="mt-5">Example</h1>
+        <span 
+          class="persona-def example-def" 
+          id="server" 
+          data-color="warning" 
+          data-name="Server" 
+          data-icon="memory"
+          data-side="right"
+        ></span>
+        <span 
+          class="persona-def example-def" 
+          id="alice" 
+          data-color="success" 
+          data-name="Alice's Browser" 
+          data-icon="face_4"
+          data-side="left"
+        ></span>
+        <h2 class="example-chapter">STEP 1: Configure Server</h2>
+        <div class="chat-def" data-from="server">
+          <p>
+            I need to configure secure communication protocols before accepting connections. 
+            Setting up a <a href="./asymmetric_key_basic.html">public and private key</a> for encryption is essential.
+          </p>
+          <p class="text-center">
+            <span class="badge bg-primary d-inline-flex align-items-center bg-danger">
+              <span class="material-icons me-2">key</span>
+              <span class="m-2">Private Key</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center bg-primary">
+              <span class="material-icons me-2">key</span>
+              <span class="m-2">Public Key</span>
+            </span>
+          </p>
+          <p>
+            I must share the <strong>public key</strong> with all clients while keeping the <strong>private key</strong> safe.
+            This way, clients can encrypt messages that only I can decrypt, ensuring secure communication.
+          </p>
+        </div>
+        <h2 class="example-chapter">STEP 2: SSL Handshake</h2>
+        <div class="chat-def" data-from="alice">
+          I want to establish a secure connection with the server. 
+          I will send a request to the server to initiate the SSL handshake.
+        </div>
+        <div class="arrow-def" data-from="alice" data-to="server">
+          Give me your public key so I can encrypt messages that only you can decrypt.
+        </div>
+        <div class="arrow-def" data-from="alice" data-to="server" data-direction="left">
+          <span class="badge bg-primary d-inline-flex align-items-center bg-primary mt-2">
+            <span class="material-icons me-2">key</span>
+            <span class="m-2">Public Key</span>
+          </span>
+        </div>
+        <div class="chat-def" data-from="alice">
+          <p>
+            I've received the public key from the server. Now I can send data to it in a secure way. 
+            But it works only one way. I need to find a way to secure server responses too for 
+            complete security.
+          </p>
+          <p>
+            I'll create a <a href="./symmetric_key.html">symmetric key</a> for fast data encryption 
+            that can be used by both my browser and the server. I will name it a <strong>&quot;Session Key&quot;</strong>. 
+          </p>
+          <p class="text-center">
+            <span class="badge bg-primary d-inline-flex align-items-center bg-warning text-black mt-2">
+              <span class="material-icons me-2">key</span>
+              <span class="m-2">Session Key</span>
+            </span>
+          </p>
+        </div>
+        <div class="chat-def" data-from="alice">
+          <p>
+            I have the server's <strong>public key</strong>, which I can use to securely send data to it. 
+            I'll encrypt the <strong>session key</strong> using the <strong>public key</strong>, 
+            ensuring that I can securely send it to the server for our communication.
+          </p>
+          <p class="text-center">
+            <span class="badge bg-primary d-inline-flex align-items-center bg-primary">
+              <span class="material-icons me-2">key</span>
+              <span class="m-2">Public Key</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center text-black" style="background: none !important;">
+              <span class="material-icons">redo</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center bg-warning text-black">
+              <span class="material-icons me-2">key</span>
+              <span class="m-2">Session Key</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center text-black" style="background: none !important;">
+              <span class="material-icons">double_arrow</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center bg-danger mt-2">
+              <span class="material-icons me-2">lock</span>
+              <span class="m-2">
+                <span class="badge bg-primary d-inline-flex align-items-center bg-warning text-black">
+                  <span class="material-icons me-2">key</span>
+                  <span class="m-2">Session Key</span>
+                </span>
+              </span>
+            </span>
+          </p>
+        </div>
+        <div class="arrow-def" data-from="alice" data-to="server">
+          <span class="badge bg-primary d-inline-flex align-items-center bg-danger mt-2">
+            <span class="material-icons me-2">lock</span>
+            <span class="m-2">
+              <span class="badge bg-primary d-inline-flex align-items-center bg-warning text-black">
+                <span class="material-icons me-2">key</span>
+                <span class="m-2">Session Key</span>
+              </span>
+              <br/>
+              <br/>
+              <small class="pt-2">Needs private key</small>
+            </span>
+          </span>
+        </div>
+        <div class="chat-def" data-from="server">
+          <p>
+            I've received the encrypted <strong>session key</strong> from Alice. 
+            I'll use my <strong>private key</strong> to decrypt it and get the <strong>session key</strong>. 
+            This way, we can securely communicate using the <strong>session key</strong> for encryption and decryption.
+          </p>
+          <p class="text-center">
+            <span class="badge bg-primary d-inline-flex align-items-center bg-danger">
+              <span class="material-icons me-2">key</span>
+              <span class="m-2">Private Key</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center text-black" style="background: none !important;">
+              <span class="material-icons">redo</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center bg-danger mt-2">
+              <span class="material-icons me-2">lock</span>
+              <span class="m-2">
+                <span class="badge bg-primary d-inline-flex align-items-center bg-warning text-black">
+                  <span class="material-icons me-2">key</span>
+                  <span class="m-2">Session Key</span>
+                </span>
+              </span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center text-black" style="background: none !important;">
+              <span class="material-icons">double_arrow</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center bg-warning text-black mt-2">
+              <span class="material-icons me-2">key</span>
+              <span class="m-2">Session Key</span>
+            </span>
+          </p>
+        </div>
+        <h2 class="example-chapter">STEP 3: Secure Request</h2>
+        <div class="chat-def" data-from="alice">
+          <p>
+            Now that we have established a secure connection using the <strong>session key</strong>, 
+            we can communicate securely. The <strong>session key</strong> will be used for encrypting 
+            and decrypting data between us.
+          </p>
+          <p class="text-center">
+            <span class="badge bg-primary d-inline-flex align-items-center bg-warning text-black">
+              <span class="material-icons me-2">key</span>
+              <span class="m-2">Session Key</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center text-black" style="background: none !important;">
+              <span class="material-icons">redo</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center bg-white text-black">
+              <span class="material-icons me-2">description</span>
+              <span>User / Pass</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center text-black" style="background: none !important;">
+              <span class="material-icons">double_arrow</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center bg-warning text-black mt-2">
+              <span class="material-icons me-2">lock</span>
+              <span class="m-2">
+                <span class="badge bg-primary d-inline-flex align-items-center bg-white text-black">
+                  <span class="material-icons me-2">description</span>
+                  <span>User / Pass</span>
+                </span>
+              </span>
+            </span>
+          </p>
+        </div>
+        <div class="arrow-def" data-from="alice" data-to="server">
+          <span class="badge bg-primary d-inline-flex align-items-center bg-warning mt-2 text-black">
+            <span class="material-icons me-2">lock</span>
+            <span class="m-2">
+              <span class="badge bg-primary d-inline-flex align-items-center bg-white text-black">
+                <span class="material-icons me-2">description</span>
+                <span>User / Pass</span>
+              </span>
+              <br/>
+              <br/>
+              <small class="pt-2">Needs session key</small>
+            </span>
+          </span>
+        </div>
+        <div class="chat-def" data-from="server">
+          <p>
+            I've received the encrypted data from Alice. I'll use the <strong>session key</strong> to decrypt it and 
+            get the original data. This way, we can securely communicate using the <strong>session key</strong> for 
+            encryption and decryption.
+          </p>
+          <p class="text-center">
+            <span class="badge bg-primary d-inline-flex align-items-center bg-warning text-black">
+              <span class="material-icons me-2">key</span>
+              <span class="m-2">Session Key</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center text-black" style="background: none !important;">
+              <span class="material-icons">redo</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center bg-warning text-black mt-2">
+              <span class="material-icons me-2">lock</span>
+              <span class="m-2">
+                <span class="badge bg-primary d-inline-flex align-items-center bg-white text-black">
+                  <span class="material-icons me-2">description</span>
+                  <span>User / Pass</span>
+                </span>
+              </span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center text-black" style="background: none !important;">
+              <span class="material-icons">double_arrow</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center bg-white text-black">
+              <span class="material-icons me-2">description</span>
+              <span>User / Pass</span>
+            </span>
+          </p>
+        </div>
+        <h2 class="example-chapter">STEP 4: Secure Response</h2>
+        <div class="chat-def" data-from="server">
+          <p>
+            Now I can send the response to Alice securely using the <strong>session key</strong>.
+          </p>
+          <p class="text-center">
+            <span class="badge bg-primary d-inline-flex align-items-center bg-warning text-black">
+              <span class="material-icons me-2">key</span>
+              <span class="m-2">Session Key</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center text-black" style="background: none !important;">
+              <span class="material-icons">redo</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center bg-white text-black">
+              <span class="material-icons me-2">description</span>
+              <span>Secret Data</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center text-black" style="background: none !important;">
+              <span class="material-icons">double_arrow</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center bg-warning text-black mt-2">
+              <span class="material-icons me-2">lock</span>
+              <span class="m-2">
+                <span class="badge bg-primary d-inline-flex align-items-center bg-white text-black">
+                  <span class="material-icons me-2">description</span>
+                  <span>Secret Data</span>
+                </span>
+              </span>
+            </span>
+          </p>
+        </div>
+        <div class="arrow-def" data-from="alice" data-to="server" data-direction="left">
+          <span class="badge bg-primary d-inline-flex align-items-center bg-warning mt-2 text-black">
+            <span class="material-icons me-2">lock</span>
+            <span class="m-2">
+              <span class="badge bg-primary d-inline-flex align-items-center bg-white text-black">
+                <span class="material-icons me-2">description</span>
+                <span>Secret Data</span>
+              </span>
+              <br/>
+              <br/>
+              <small class="pt-2">Needs session key</small>
+            </span>
+          </span>
+        </div>
+        <div class="chat-def" data-from="alice">
+          <p>
+            I've received the encrypted response from the server. I'll use the <strong>session key</strong> to decrypt it and 
+            get the original data. This way, we can securely communicate using the <strong>session key</strong> for encryption 
+            and decryption.
+          </p>
+          <p class="text-center">
+            <span class="badge bg-primary d-inline-flex align-items-center bg-warning text-black">
+              <span class="material-icons me-2">key</span>
+              <span class="m-2">Session Key</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center text-black" style="background: none !important;">
+              <span class="material-icons">redo</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center bg-warning text-black mt-2">
+              <span class="material-icons me-2">lock</span>
+              <span class="m-2">
+                <span class="badge bg-primary d-inline-flex align-items-center bg-white text-black">
+                  <span class="material-icons me-2">description</span>
+                  <span>Secret Data</span>
+                </span>
+              </span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center text-black" style="background: none !important;">
+              <span class="material-icons">double_arrow</span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center bg-white text-black">
+              <span class="material-icons me-2">description</span>
+              <span>Secret Data</span>
+            </span>
+          </p>
       </div>
     </main>
     <script src="./js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="./js/jquery-3.7.1.min.js"></script>
     <script src="./js/sidemenu.js"></script>
-    <script src="./js/chapters/ssl.js"></script>
+    <script src="./js/example.js"></script>
     <script>
       $(document).ready(function() {
 
