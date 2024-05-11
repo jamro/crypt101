@@ -1,0 +1,53 @@
+
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>Crypt101</title>
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="./iconfont/material-icons.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <main class="d-flex flex-nowrap">
+      <div id="side-panel" class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark">
+        <a href="./index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <span id="side-title" class="fs-4">Crypt 101</span>
+        </a>
+        <hr>
+        <ul id="side-menu" class="nav nav-pills flex-column mb-auto">
+
+        </ul>
+      </div>
+      <div id="content" class="p-3 ps-5">
+        <h1>SSL Communication</h1>
+        <p>
+          SSL (Secure Sockets Layer) is a protocol that ensures secure communication over the internet by encrypting data 
+          exchanged between a web server and a client. SSL uses a combination of <a href="./asymmetric_key_basic.html">asymmetric</a> 
+          and <a href="./symmetric_key.html">symmetric</a> encryption to establish a secure connection.
+        </p>
+        <p>
+          Once the SSL handshake is complete and a secure connection is established, symmetric encryption is used to 
+          encrypt the actual data being exchanged between the server and client. A symmetric key is generated for each 
+          session, and this key is used to encrypt and decrypt data efficiently. Since symmetric encryption is faster than 
+          asymmetric encryption, it is used for encrypting large amounts of data during the secure connection.
+        </p>
+        
+      </div>
+    </main>
+    <script src="./js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="./js/sidemenu.js"></script>
+    <script src="./js/chapters/ssl.js"></script>
+    <script>
+      $(document).ready(function() {
+
+      })
+    </script>
+  </body>
+</html>
