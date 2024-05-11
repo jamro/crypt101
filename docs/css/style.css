@@ -12,6 +12,10 @@ html, body, main {
   margin-left: 20em;
 }
 
+.example-def {
+  display: none;
+}
+
 .persona-icon {
   font-size: 2em;
   background-color: #ccc;

@@ -66,140 +66,96 @@
           key encryption technique.
         </p>
         <h1 class="mt-5">Live Example</h1>
+        <span 
+          class="persona-def example-def" 
+          id="julius" 
+          data-color="success" 
+          data-name="Julius Caesar" 
+          data-icon="face"
+          data-side="left"
+        ></span>
+        <span 
+          class="persona-def example-def" 
+          id="brutus" 
+          data-color="warning" 
+          data-name="Brutus" 
+          data-icon="face_6"
+          data-side="right"
+        ></span>
+        
         <h2 class="example-chapter">STEP 1: Choose cipher key</h2>
-        <div class="chat-row">
-          <div class="persona-container">
-            <div class="material-icons-outlined persona-icon text-bg-success">face</div>
-            <div class="persona-label">Julius Caesar</div>
-          </div>
-          <div class="chat-msg">
-            <div class="chat-cloud">
-              Alright, I've chosen 
-              <select id="shift-input" class="form-select" style="width: auto; display: inline-block; padding: 0 2em 0 0.5em" onChange="updateCaesar()">
-                <option value="1">one</option>
-                <option value="2">two</option>
-                <option selected value="3">three</option>
-                <option value="4">four</option>
-                <option value="5">five</option>
-                <option value="6">six</option>
-                <option value="7">seven</option>
-                <option value="8">eight</option>
-                <option value="9">nine</option>
-                <option value="10">ten</option>
-              </select>
-              as the shift value for the Caesar cipher. 
-              Now, I need to share this information securely with Brutus without letting others know. This needs to be discreet and secure.
-            </div>
-          </div>
+        <div class="chat-def" data-from="julius">
+          Alright, I've chosen 
+          <select id="shift-input" class="form-select" style="width: auto; display: inline-block; padding: 0 2em 0 0.5em" onChange="updateCaesar()">
+            <option value="1">one</option>
+            <option value="2">two</option>
+            <option selected value="3">three</option>
+            <option value="4">four</option>
+            <option value="5">five</option>
+            <option value="6">six</option>
+            <option value="7">seven</option>
+            <option value="8">eight</option>
+            <option value="9">nine</option>
+            <option value="10">ten</option>
+          </select>
+          as the shift value for the Caesar cipher. 
+          Now, I need to share this information securely with Brutus without letting others know. This needs to be discreet and secure.
         </div>
-        <div class="com-row">
-          <div class="persona-container">
-            <div class="material-icons-outlined persona-icon text-bg-success">face</div>
-            <div class="persona-label">Julius Caesar</div>
-          </div>
-          <div class="com-arrow">
-            <div class="com-msg">Shift value: <strong class="shift-num-value">3</strong></div>
-            <div class="com-arrow-head"></div>
-          </div>
-          <div class="persona-container">
-            <div class="material-icons-outlined persona-icon text-bg-warning">face_6</div>
-            <div class="persona-label">Brutus</div>
-          </div>
+
+        <div class="arrow-def" data-from="julius" data-to="brutus" data-direction="right">
+          Shift value: <strong class="shift-num-value">3</strong>
         </div>
-        <div class="chat-row">
-          <div class="chat-msg-right">
-            <div class="chat-cloud">
-              Understood, Julius. I'll remember that we're using the number <strong class="shift-value">three</strong> as the shift value in our Caesar cipher for our future communications..
-            </div>
-          </div>
-          <div class="persona-container">
-            <div class="material-icons-outlined persona-icon text-bg-warning">face_6</div>
-            <div class="persona-label">Brutus</div>
-          </div>
+
+        <div class="chat-def" data-from="brutus">
+          Understood, Julius. I'll remember that we're using the number <strong class="shift-value">three</strong> as the shift value in our Caesar cipher for our future communications..
         </div>
+
         <h2 class="example-chapter">STEP 2: Send message</h2>
-        <div class="chat-row">
-          <div class="persona-container">
-            <div class="material-icons-outlined persona-icon text-bg-success">face</div>
-            <div class="persona-label">Julius Caesar</div>
-          </div>
-          <div class="chat-msg">
-            <div class="chat-cloud">
-              <p>
-                I need to securely communicate with Brutus... the message I need him to receive is:
-              </p>
-              <textarea id="message-input" class="w-100 form-control" onKeyUp="updateCaesar()" onChange="updateCaesar()">Ensure the lions for the Colosseum are well fed.</textarea>
-            </div>
-          </div>
+
+        <div class="chat-def" data-from="julius">
+          <p>
+            I need to securely communicate with Brutus... the message I need him to receive is:
+          </p>
+          <textarea id="message-input" class="w-100 form-control" onKeyUp="updateCaesar()" onChange="updateCaesar()">Ensure the lions for the Colosseum are well fed.</textarea>
         </div>
-        <div class="chat-row">
-          <div class="persona-container">
-            <div class="material-icons-outlined persona-icon text-bg-success">face</div>
-            <div class="persona-label">Julius Caesar</div>
-          </div>
-          <div class="chat-msg">
-            <div class="chat-cloud">
-              <p>
-                Let's use the Caesar cipher with a shift of <strong class="shift-value">three</strong> to encrypt the message. 
-                That means each letter in the message will be moved <strong class="shift-value">three</strong> places down the alphabet.
-              </p>
-              <p>
-                The encrypted message will be: <br/>
-                <code class="encrypted-value">Hqvxuh wkh olrqv iru wkh Frorvvhxp duh zhoo ihg.</code>
-              </p>
-            </div>
-          </div>
+
+        <div class="chat-def" data-from="julius">
+          <p>
+            Let's use the Caesar cipher with a shift of <strong class="shift-value">three</strong> to encrypt the message. 
+            That means each letter in the message will be moved <strong class="shift-value">three</strong> places down the alphabet.
+          </p>
+          <p>
+            The encrypted message will be: <br/>
+            <code class="encrypted-value">Hqvxuh wkh olrqv iru wkh Frorvvhxp duh zhoo ihg.</code>
+          </p>
         </div>
-        <div class="com-row">
-          <div class="persona-container">
-            <div class="material-icons-outlined persona-icon text-bg-success">face</div>
-            <div class="persona-label">Julius Caesar</div>
-          </div>
-          <div class="com-arrow">
-            <div class="com-msg pt-1">
-              <span style="overflow: hidden; display: inline-block; white-space: nowrap;">
-                Message: 
-              </span>
-              <strong class="encrypted-value ellipsis-text">
-                HQVXUH WKH OLRQV IRU WKH FRORVVHXP DUH AHOO IHG.
-              </strong>
-            </div>
-            <div class="com-arrow-head"></div>
-          </div>
-          <div class="persona-container">
-            <div class="material-icons-outlined persona-icon text-bg-warning">face_6</div>
-            <div class="persona-label">Brutus</div>
-          </div>
+
+
+        <div class="arrow-def pt-1" data-from="julius" data-to="brutus" data-direction="right">
+          <span style="overflow: hidden; display: inline-block; white-space: nowrap;">
+            Message: 
+          </span>
+          <strong class="encrypted-value ellipsis-text">
+            HQVXUH WKH OLRQV IRU WKH FRORVVHXP DUH AHOO IHG.
+          </strong>
         </div>
-        <div class="chat-row">
-          <div class="chat-msg-right">
-            <div class="chat-cloud">
-              Julius has sent a message. To decrypt this with our Caesar cipher, I need to shift each letter back by <strong class="shift-value">three</strong> places in the alphabet.
-            </div>
-          </div>
-          <div class="persona-container">
-            <div class="material-icons-outlined persona-icon text-bg-warning">face_6</div>
-            <div class="persona-label">Brutus</div>
-          </div>
+
+        <div class="chat-def" data-from="brutus">
+          Julius has sent a message. To decrypt this with our Caesar cipher, I need to shift each letter back by <strong class="shift-value">three</strong> places in the alphabet.
         </div>
-        <div class="chat-row">
-          <div class="chat-msg-right">
-            <div class="chat-cloud">
-              The decrypted message is: <br/>
-              <code class="decrypted-value">Ensure the lions for the Colosseum are well fed.</code>
-            </div>
-          </div>
-          <div class="persona-container">
-            <div class="material-icons-outlined persona-icon text-bg-warning">face_6</div>
-            <div class="persona-label">Brutus</div>
-          </div>
+
+        <div class="chat-def" data-from="brutus">
+          The decrypted message is: <br/>
+          <code class="decrypted-value">Ensure the lions for the Colosseum are well fed.</code>
         </div>
+        
       </div>
     </main>
     <script src="./js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="./js/jquery-3.7.1.min.js"></script>
     <script src="./js/sidemenu.js"></script>
     <script src="./js/chapters/symmetric_key.js"></script>
+    <script src="./js/example.js"></script>
     <script>
       $(document).ready(function() {
         updateCaesar()
