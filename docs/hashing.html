@@ -1,0 +1,215 @@
+
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>Crypt101</title>
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="./iconfont/material-icons.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <main class="d-flex flex-nowrap">
+      <div id="side-panel" class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark">
+        <a href="./index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <span id="side-title" class="fs-4">Crypt 101</span>
+        </a>
+        <hr>
+        <ul id="side-menu" class="nav nav-pills flex-column mb-auto">
+
+        </ul>
+      </div>
+      <div id="content" class="p-3 ps-5">
+        <h1>Hashing</h1>
+        <p>
+          Hashing is a fundamental concept used in the field of cryptography to ensure data integrity and security. 
+          It involves taking an input (or 'message') and using a mathematical algorithm to produce a fixed-size string of bytes, 
+          typically expressed as a hexadecimal number. This output is known as a hash or hash value.
+        </p>
+        <p>
+          Hashes are primarily used to ensure data integrity, verify authenticity, and secure sensitive information like passwords. 
+          By converting data into a fixed-size, unique hash value, hashing confirms that data has not been tampered with during 
+          transmission or storage. In password security, rather than storing the passwords themselves, systems store their hash values, 
+          enhancing security by making it difficult to reverse-engineer the original input. Additionally, hashes are crucial in 
+          digital signatures and blockchain technologies, where they authenticate transactions and maintain the integrity of the 
+          data chain, preventing unauthorized changes and ensuring continuity and trust in the system.
+        </p>
+        <h1>Fletcher-16</h1>
+        <p>
+          The Fletcher-16 checksum is a simple algorithm used to compute a checksum, which is a type of hash function used for 
+          error-detecting codes in data transmission and storage. Here's a step-by-step description of how Fletcher-16 works:
+        </p>
+        <ol>
+          <li>
+            <strong>Initialization</strong>: 
+            Start with two sums, <code>sum1</code> and <code>sum2</code>
+          </li>
+          <li>
+            <strong>Processing</strong>: 
+            For each byte in the input data, update the sums as follows:
+            <ul>
+              <li>
+                <code>sum1 = (sum1 + byte) % 255</code>
+              </li>
+              <li>
+                <code>sum2 = (sum2 + sum1) % 255</code>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Modulo Operation</strong>: 
+            Since both sums are calculated using 8-bit arithmetic (module 255), they wrap around upon reaching 256 
+            (i.e., 256 becomes 0, 257 becomes 1, etc.). This ensures that the sums never exceed the 8-bit limit.
+          </li>
+          <li>
+            <strong>Final Checksum Calculation</strong>: 
+            After processing all the bytes of data, combine <code>sum1</code> and <code>sum2</code> to form the checksum. 
+            <code>sum1</code> forms the lower byte and <code>sum2</code> forms the upper byte of the final 16-bit checksum.
+          </li>
+        </ol>
+        <p>
+          The <strong>Fletcher checksum</strong>, used here for its simplicity and ease of understanding, is not cryptographically secure. 
+          In contrast, cryptographic hash functions must satisfy key properties: collision resistance (hard to find two inputs that hash to the same output), 
+          preimage resistance (hard to reverse a hash to its original input), and second preimage resistance (hard to find a different input that 
+          produces the same hash). These functions also exhibit the avalanche effect, where minor input changes cause major output differences, 
+          ensuring robust security for applications such as digital signatures and secure data transmission.
+        </p>
+        <p>
+          The <strong>Fletcher checksum</strong> algorithm exists in several variants, such as <strong>Fletcher-16</strong>, <strong>Fletcher-32</strong>, 
+          and <strong>Fletcher-64</strong>, with the numerical suffix indicating the bit length of the checksum. Each variant offers 
+          different levels of error detection suitable for various data sizes and application requirements, allowing users to balance 
+          computational overhead and robustness effectively.
+        </p>
+        <h1>Live Example</h1>
+        <div class="alert alert-primary small">
+          <strong>NOTE:</strong> The algorithms in the example below are simplified and not cryptographically secure, 
+          designed mainly for educational purposes. They do not address all corner cases and are unsuitable 
+          for practical encryption tasks. Real-world cryptographic methods are far more complex and secure, 
+          rigorously designed to handle various security threats and edge cases.
+        </div>
+        <span 
+          class="persona-def example-def" 
+          id="alice" 
+          data-color="success" 
+          data-name="Alice" 
+          data-icon="face_4"
+          data-side="left"
+        ></span>
+        <span 
+          class="persona-def example-def" 
+          id="server" 
+          data-color="warning" 
+          data-name="Server" 
+          data-icon="memory"
+          data-side="right"
+        ></span>
+        <h2 class="example-chapter">STEP 1: Store password</h2>
+        <div class="chat-def" data-from="server">
+          <p>
+            Must ensure maximum security for stored passwords! Instead of storing the password 
+            <input id="pass-input" data-chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" class="form-control text-center upper-case" style="display: inline-block; padding: 0 0.5em 0 0.5em; width: 8em;" onKeyUp="updateExample()" onChange="updateExample()" value="SECRET"> 
+            for user <input id="user-input" data-chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" class="form-control text-center upper-case" style="display: inline-block; padding: 0 0.5em 0 0.5em; width: 8em;" onKeyUp="updateExample()" onChange="updateExample()" value="ALICE"> 
+            I will hash it first.
+          </p>
+          <p>
+            This way, even if there's a data breach and my database is exposed, 
+            the actual passwords remain secure. Hashing transforms the password into a unique, fixed-size string which 
+            is almost impossible to reverse-engineer.
+          </p>
+        </div>
+        <div class="chat-def" data-from="server">
+          <p>
+            I will convert each character of the password <code class="pass-value"></code> into ASCII code to process it byte by byte. 
+            Each character translates into a specific hex value:
+          </p>
+          <p>
+            <code class="pass-chars ellipsis-text" style="white-space: pre"></code><br/>
+            <code class="pass-num ellipsis-text" style="white-space: pre"></code>
+          </p>
+          <p>
+            This will prepare the data perfectly for hashing.
+          </p>
+        </div>
+        <div class="chat-def" data-from="server">
+          <p>
+            Let's start hashing the password:
+          </p>
+          <p>
+            <code class="calc" style="white-space: pre"></code>
+          </p>
+          <p>
+            After processing all the bytes, <code>sum1 = <span class="sum1">...</span></code> and <code>sum2 = <span class="sum2">...</span></code>.
+            It can be expressed as a hexadecimal numbers: <code>sum1 = 0x<span class="sum1-hex">...</span></code> and <code>sum2 = 0x<span class="sum2-hex">...</span></code>.
+            The final hash is <code><span class="pass-hash">...</span></code>.
+          </p>
+        </div>
+        <div class="chat-def" data-from="server">
+          <p>
+            Now, I will store the <strong>user name</strong> and the <strong>hashed password</strong> in the database. 
+            It will be secure and ready for authentication.
+          </p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Password</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="user-value">...</span></td>
+                <td><span class="pass-hash">...</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h2 class="example-chapter">STEP 2: Authenticate user</h2>
+        <div class="arrow-def" data-from="alice" data-to="server">
+          <p class="mt-2 mb-1">
+            User: <input id="user-auth" data-chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" class="form-control text-center upper-case" style="display: inline-block; padding: 0 0.5em 0 0.5em; width: 8em;" onKeyUp="updateExample()" onChange="updateExample()" value="ALICE">
+          </p>
+          <p class="mt-1">
+            Pass: <input id="pass-auth" data-chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" class="form-control text-center upper-case" style="display: inline-block; padding: 0 0.5em 0 0.5em; width: 8em;" onKeyUp="updateExample()" onChange="updateExample()" value="SECRET">
+          </p>
+        </div>
+        <div class="chat-def" data-from="server">
+          <p>
+            User <strong class="user-auth">...</strong> is trying to authenticate with the password <strong class="pass-auth">...</strong>.
+            Let's calculate the hash of the password
+          </p>
+          <p>
+            Hash of the password is <code class="pass-auth-hash">...</code>
+          </p>
+        </div>
+        <div class="chat-def" data-from="server">
+          <p>
+            Now, I will query the database to find the row with the user name <strong class="user-auth">...</strong> and pass the hash <strong class="pass-auth-hash">...</strong>.
+          </p>
+          <p>
+            <strong class="auth-result">...</strong>
+          </p>
+        </div>
+        <div class="arrow-def" data-from="alice" data-to="server" data-direction="left">
+          <p>
+            <strong class="auth-response">...</strong>
+          </p>
+        </div>
+      </div>
+    </main>
+    <script src="./js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="./js/sidemenu.js"></script>
+    <script src="./js/chapters/hashing.js"></script>
+    <script src="./js/example.js"></script>
+    <script>
+      $(document).ready(function() {
+        updateExample()
+      })
+    </script>
+  </body>
+</html>

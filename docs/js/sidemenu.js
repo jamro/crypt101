@@ -34,6 +34,7 @@ function addMenuLink(title, file, parent = '#side-menu') {
 $(document).ready(function() {
   $('#side-title').html('<span class="material-icons">security</span> Crypt 101')
   addMenuLink('Welcome', 'index.html')
+  addMenuLink('Hashing', 'hashing.html')
   addSection('Symmetric Key', 'symmetric_key')
   addMenuLink('Caesar Cipher', 'symmetric_key.html', '#symmetric_key')
   addMenuLink('Vigenere Cipher', 'symmetric_key_advanced.html', '#symmetric_key')
