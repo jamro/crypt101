@@ -85,4 +85,11 @@ function styleExample() {
 
 $(document).ready(function() {
   styleExample()
+
+  $('[data-chars]').on('input', function() {
+    const chars = $(this).data('chars');
+    const value = $(this).val();
+    const filteredValue = value.split('').filter(char => chars.includes(char)).join('');
+    $(this).val(filteredValue);
+  });
 })

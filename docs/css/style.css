@@ -134,3 +134,7 @@ h2.example-chapter::after {
   background: #aaa;
   margin: 0 10px;
 }
+
+.upper-case {
+  text-transform: uppercase;
+}

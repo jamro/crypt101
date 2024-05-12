@@ -34,7 +34,9 @@ function addMenuLink(title, file, parent = '#side-menu') {
 $(document).ready(function() {
   $('#side-title').html('<span class="material-icons">security</span> Crypt 101')
   addMenuLink('Welcome', 'index.html')
-  addMenuLink('Symmetric Key', 'symmetric_key.html')
+  addSection('Symmetric Key', 'symmetric_key')
+  addMenuLink('Caesar Cipher', 'symmetric_key.html', '#symmetric_key')
+  addMenuLink('Vigenere Cipher', 'symmetric_key_advanced.html', '#symmetric_key')
   addSection('Asymmetric Key', 'asymmetric_key')
   addMenuLink('RSA Basics', 'asymmetric_key_basic.html', '#asymmetric_key')
   addMenuLink('RSA Text Encryption', 'asymmetric_key_text.html', '#asymmetric_key')

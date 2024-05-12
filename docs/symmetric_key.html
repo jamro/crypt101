@@ -116,7 +116,7 @@
           <p>
             I need to securely communicate with Brutus... the message I need him to receive is:
           </p>
-          <textarea id="message-input" class="w-100 form-control" onKeyUp="updateCaesar()" onChange="updateCaesar()">Ensure the lions for the Colosseum are well fed.</textarea>
+          <textarea id="message-input" data-chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz " class="w-100 form-control upper-case" onKeyUp="updateCaesar()" onChange="updateCaesar()">Ensure the lions for the Colosseum are well fed</textarea>
         </div>
 
         <div class="chat-def" data-from="julius">
@@ -146,7 +146,7 @@
 
         <div class="chat-def" data-from="brutus">
           The decrypted message is: <br/>
-          <code class="decrypted-value">Ensure the lions for the Colosseum are well fed.</code>
+          <code class="decrypted-value">Ensure the lions for the Colosseum are well fed</code>
         </div>
         
       </div>
