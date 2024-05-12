@@ -124,7 +124,7 @@ function updateExample2() {
   const encrypted = encoded.map(c => encryptRsaNumber(c, e, n))
   const encryptedEncoded = encrypted.map(c => ALL_CHARS[c]).join('')
   const encryptedEncodedDecoded = encryptedEncoded.split('').map(c => ALL_CHARS.indexOf(c))
-  const decrypted = encrypted.map(c => encryptRsaNumber(c, d, n))
+  const decrypted = encryptedEncodedDecoded.map(c => encryptRsaNumber(c, d, n))
   const decoded = decrypted.map(c => INPUT_CHARS[c]).join('')
 
   $('.key-param-n').text(n)
