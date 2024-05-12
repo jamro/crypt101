@@ -75,9 +75,19 @@
           This means, <code>(d * e) % phi = 1</code>. The private key <code>d</code> is kept secret.
         </p>
         <p>
-          Thus, the public key consists of <code>n</code> and <code>e</code>, and the private key is <code>d</code>. The security of RSA rests 
+          Thus, the public key consists of <code>e</code> and <code>n</code>, and the private key is <code>d</code> and <code>n</code>. The security of RSA rests 
           largely on the difficulty in factoring the modulus <code>n</code> (product of <code>p</code> and <code>q</code>) back into its 
           constituent prime numbers <code>p</code> and <code>q</code>.
+        </p>
+        <p class="text-center">
+          <span class="badge bg-primary d-inline-flex align-items-center bg-primary">
+            <span class="material-icons me-2">key</span>
+            <span class="m-2">Public Key [e, n]</span>
+          </span>
+          <span class="badge bg-primary d-inline-flex align-items-center bg-danger">
+            <span class="material-icons me-2">key</span>
+            <span class="m-2">Private Key [d, n]</span>
+          </span>
         </p>
         <h2>Encryption</h2>
         <p>
@@ -85,13 +95,82 @@
           The plaintext message is raised to the power of the public exponent, and the result is then divided by the modulus. 
           The remainder of this division (or modulus operation) is the encrypted message or the ciphertext.
         </p>
+        <p class="text-center">
+          <span class="badge bg-primary d-inline-flex align-items-center bg-primary">
+            <span class="material-icons me-2">key</span>
+            <span class="m-2">Public Key</span>
+          </span>
+          <span class="badge bg-primary d-inline-flex align-items-center text-black" style="background: none !important;">
+            <span class="material-icons">redo</span>
+          </span>
+          <span class="badge bg-primary d-inline-flex align-items-center bg-white text-black">
+            <span class="material-icons me-2">description</span>
+            <span class="m-2">Secret Data</span>
+          </span>
+          <span class="badge bg-primary d-inline-flex align-items-center text-black" style="background: none !important;">
+            <span class="material-icons">double_arrow</span>
+          </span>
+          <span class="badge bg-primary d-inline-flex align-items-center bg-danger mt-2">
+            <span class="material-icons me-2">lock</span>
+            <span class="m-2">
+              <span class="badge bg-primary d-inline-flex align-items-center bg-white text-black">
+                <span class="material-icons me-2">description</span>
+                <span class="m-2">Secret Data</span>
+              </span>
+              <br/>
+              <br/>
+              Needs private key
+            </span>
+          </span>
+        </p>
         <h2>Decryption</h2>
         <p>
           The recipient uses their private key to decrypt the encrypted message (private exponent <code>d</code> and modulus <code>n</code> ). 
           The ciphertext is raised to the power of the private key, and divided by the modulus. 
           The remainder of this division (or modulus operation) is the decrypted message or the plaintext.
         </p>
+        <p class="text-center">
+          <span class="badge bg-primary d-inline-flex align-items-center bg-danger">
+            <span class="material-icons me-2">key</span>
+            <span class="m-2">Private Key</span>
+          </span>
+          <span class="badge bg-primary d-inline-flex align-items-center text-black" style="background: none !important;">
+            <span class="material-icons">redo</span>
+          </span>
+          <span class="badge bg-primary d-inline-flex align-items-center bg-danger mt-2">
+            <span class="material-icons me-2">lock</span>
+            <span class="m-2">
+              <span class="badge bg-primary d-inline-flex align-items-center bg-white text-black">
+                <span class="material-icons me-2">description</span>
+                <span class="m-2">Secret Data</span>
+              </span>
+            </span>
+          </span>
+          <span class="badge bg-primary d-inline-flex align-items-center text-black" style="background: none !important;">
+            <span class="material-icons">double_arrow</span>
+          </span>
+          <span class="badge bg-primary d-inline-flex align-items-center bg-white text-black mt-2">
+            <span class="material-icons me-2">description</span>
+            <span class="m-2">Secret Data</span>
+          </span>
+        </p>
+        <h2>Key Interchangeability</h1>
+        <p>
+          In RSA encryption, the public and private keys are mathematically linked and can be used interchangeably in 
+          terms of encryption and decryption. While it is common to encrypt data with the public key and decrypt with 
+          the private key, the reverse is also valid. Data encrypted with the private key can only be decrypted by the 
+          corresponding public key. This feature is often utilized for digital signatures, where a sender encrypts data 
+          with their private key to prove authenticity, and the receiver uses the public key to verify the integrity of 
+          the message. This flexibility allows RSA to be used not only for confidentiality but also for authentication 
+          and integrity checks.
+        </p>
         <h1 class="mt-5">Live Example</h1>
+        <div class="alert alert-primary small">
+          <strong>NOTE:</strong> The algorithms in the example below are simplified and not cryptographically secure, 
+          designed mainly for educational purposes. They do not address all corner cases and are unsuitable 
+          for practical encryption tasks. Real-world cryptographic methods are far more complex and secure, 
+          rigorously designed to handle various security threats and edge cases.
+        </div>
         <span 
           class="persona-def example-def" 
           id="alice" 

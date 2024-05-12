@@ -1,3 +1,6 @@
+const INPUT_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 .,-:{}[]\"'!"
+const ALL_CHARS =  INPUT_CHARS + "abcdefghijklmnopqrstuvwxyz@#$%^&*()_+=<>?/|~`;"
+
 function gcd(a, b) {
   if (b === 0)
       return a;
@@ -33,7 +36,7 @@ function findD(e, phi) {
 
 function encryptRsaNumber(msg, e, n) {
   let result = 1;
-  msg = msg % n;
+  msg = Number(msg) % n;
   while (e > 0) {
     if (e % 2 == 1)
       result = (result * msg) % n;
@@ -93,10 +96,8 @@ function updateExample1() {
   $('.key-param-d').text(d)
 }
 
-
 function updateExample2() {
-const p = Number($('#key-param-p-input').val())
-  const q = Number($('#key-param-q-input').val())
+  const [p, q] = $('#key-param-pq-input').val().split("|").map(Number)
 
   if(p === q) {
     $('#key-param-p-input').addClass('border-danger')
@@ -115,27 +116,35 @@ const p = Number($('#key-param-p-input').val())
   const d = findD(e, phi)
 
   const msg = $('#message-input').val()
-  const encoded = msg.split('').map(c => c.charCodeAt(0))
+    .toUpperCase()
+    .split('')
+    .filter(c => INPUT_CHARS.includes(c))
+    .join('')
+  const encoded = msg.split('').map(c => INPUT_CHARS.indexOf(c))
   const encrypted = encoded.map(c => encryptRsaNumber(c, e, n))
+  const encryptedEncoded = encrypted.map(c => ALL_CHARS[c]).join('')
+  const encryptedEncodedDecoded = encryptedEncoded.split('').map(c => ALL_CHARS.indexOf(c))
   const decrypted = encrypted.map(c => encryptRsaNumber(c, d, n))
-  const decoded = decrypted.map(c => String.fromCharCode(c)).join('')
+  const decoded = decrypted.map(c => INPUT_CHARS[c]).join('')
 
   $('.key-param-n').text(n)
   $('.key-param-e').text(e)
   $('.key-param-d').text(d)
-  $('.encoded').text(encoded.join(', '))
-  $('.encrypted').text(encrypted.join(', '))
-  $('.decrypted').text(decrypted.join(', '))
+  $('.encoded').text(encoded.map(c => c.toString().padStart(2, '0')).join(' '))
+  $('.encrypted').text(encrypted.map(c => c.toString().padStart(2, '0')).join(' '))
+  $('.encrypted-encoded').text(encryptedEncoded)
+  $('.encrypted-encoded-decoded').text(encryptedEncodedDecoded.map(c => c.toString().padStart(2, '0')).join(' '))
+  $('.decrypted').text(decrypted.map(c => c.toString().padStart(2, '0')).join(' '))
   $('.decoded').text(decoded)
 }
 
 function generateAsciiTable(tbody) {
   let table = ''
-  for (let i = 32; i < 124; i += 3) {
+  for (let i = 0; i < INPUT_CHARS.length; i += 3) {
     table += '<tr>'
     for (let j = 0; j < 3; j++) {
       let code = i + j
-      let char = String.fromCharCode(code)
+      let char = INPUT_CHARS[code]
       table += `<td><code>${code}</code></td><td>${char}</td>`
     }
     table += '</tr>'

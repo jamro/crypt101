@@ -27,21 +27,19 @@
       <div id="content" class="p-3 ps-5">
         <h1>RSA Text Encryption</h1>
         <p>
-          In <a href="./asymmetric_key_basic.html">RSA encryption</a>, a plaintext message needs to be converted into numeric form, since RSA fundamentally operates on numbers, not text. 
-          This conversion is typically done through a process called <strong>encoding</strong>. Each character in your message might be 
-          represented as an ASCII value, a system in which each character is represented by a unique number. 
-        </p>
-        <p>
-          For instance, <strong>A</strong> is <code>65</code>, <strong>B</strong> is <code>66</code>, and so on.
+          In <a href="./asymmetric_key_basic.html">RSA encryption</a>, a plaintext message needs to be converted into numeric form, 
+          since RSA fundamentally operates on numbers, not text. This conversion can be simply done by mapping each letter of 
+          the alphabet to a corresponding number where <strong>A</strong> is mapped to <code>0</code>, <strong>B</strong> to <code>1</code>, 
+          <strong>C</strong> to <code>2</code>, and so on up to <strong>Z</strong>, which is mapped to <code>25</code>.
         </p>
         <table class="table table-bordered table-striped table-hover">
           <thead class="table-dark">
             <tr>
-              <th>ASCII Code</th>
+              <th>Number</th>
               <th>Character</th>
-              <th>ASCII Code</th>
+              <th>Number</th>
               <th>Character</th>
-              <th>ASCII Code</th>
+              <th>Number</th>
               <th>Character</th>
             </tr>
           </thead>
@@ -50,6 +48,12 @@
           </tbody>
         </table>
         <h1 class="mt-5">Live Example</h1>
+        <div class="alert alert-primary small">
+          <strong>NOTE:</strong> The algorithms in the example below are simplified and not cryptographically secure, 
+          designed mainly for educational purposes. They do not address all corner cases and are unsuitable 
+          for practical encryption tasks. Real-world cryptographic methods are far more complex and secure, 
+          rigorously designed to handle various security threats and edge cases.
+        </div>
         <span 
           class="persona-def example-def" 
           id="alice" 
@@ -70,69 +74,55 @@
         <div class="chat-def" data-from="alice">
           <p>
             Alright, let's generate our <a href="./asymmetric_key_basic.html">RSA keys</a>:
-          </p>
-          <p>
-            <code>p = </code><select id="key-param-p-input" class="form-select" style="width: auto; display: inline-block; padding: 0 2em 0 0.5em" onChange="updateExample2()">
-              <option value="13" selected>13</option>
-              <option value="17">17</option>
-              <option value="19">19</option>
-              <option value="23">23</option>
-              <option value="29">29</option>
-              <option value="31">31</option>
-              <option value="37">37</option>
-              <option value="41">41</option>
-              <option value="43">43</option>
-              <option value="47">47</option>
-              <option value="53">53</option>
-              <option value="59">59</option>
-              <option value="61">61</option>
-              <option value="67">67</option>
-              <option value="71">71</option>
-              <option value="73">73</option>
-              <option value="79">79</option>
-              <option value="83">83</option>
-              <option value="89">89</option>
-              <option value="97">97</option>
-            </select>
-            <code>, q = </code><select id="key-param-q-input" class="form-select" style="width: auto; display: inline-block; padding: 0 2em 0 0.5em" onChange="updateExample2()">
-              <option value="13">13</option>
-              <option value="17">17</option>
-              <option value="19" selected>19</option>
-              <option value="23">23</option>
-              <option value="29">29</option>
-              <option value="31">31</option>
-              <option value="37">37</option>
-              <option value="41">41</option>
-              <option value="43">43</option>
-              <option value="47">47</option>
-              <option value="53">53</option>
-              <option value="59">59</option>
-              <option value="61">61</option>
-              <option value="67">67</option>
-              <option value="71">71</option>
-              <option value="73">73</option>
-              <option value="79">79</option>
-              <option value="83">83</option>
-              <option value="89">89</option>
-              <option value="97">97</option>
+            <select id="key-param-pq-input" class="form-select ms-2" style="width: auto; display: inline-block; padding: 0 2em 0 0.5em" onChange="updateExample2()">
+              <option value="2|29" selected>p=2, q=29</option>
+              <option value="2|31">p=2, q=31</option>
+              <option value="2|37">p=2, q=37</option>
+              <option value="2|41">p=2, q=41</option>
+              <option value="2|43">p=2, q=43</option>
+              <option value="3|17">p=3, q=17</option>
+              <option value="3|19">p=3, q=19</option>
+              <option value="3|23">p=3, q=23</option>
+              <option value="3|29">p=3, q=29</option>
+              <option value="3|31">p=3, q=31</option>
+              <option value="5|11">p=5, q=11</option>
+              <option value="5|13">p=5, q=13</option>
+              <option value="5|17">p=5, q=17</option>
+              <option value="7|11">p=7, q=11</option>
+              <option value="7|13">p=7, q=13</option>
+              <option value="11|5">p=11, q=5</option>
+              <option value="11|7">p=11, q=7</option>
+              <option value="13|5">p=13, q=5</option>
+              <option value="13|7">p=13, q=7</option>
+              <option value="17|3">p=17, q=3</option>
+              <option value="17|5">p=17, q=5</option>
+              <option value="19|3">p=19, q=3</option>
+              <option value="23|3">p=23, q=3</option>
+              <option value="29|2">p=29, q=2</option>
+              <option value="29|3">p=29, q=3</option>
+              <option value="31|2">p=31, q=2</option>
+              <option value="31|3">p=31, q=3</option>
+              <option value="37|2">p=37, q=2</option>
+              <option value="41|2">p=41, q=2</option>
+              <option value="43|2">p=43, q=2</option>
             </select>
             <span id="pq-error" class="badge rounded-pill text-bg-danger ms-2 d-none">'p' and 'q' must be different</span>
           </p>
           <p>
             My public key is 
-            <code>(e=<span class="key-param-e">5</span>, n=<span class="key-param-n">247</span>)</code> 
+            <code>(e=<span class="key-param-e">3</span>, n=<span class="key-param-n">58</span>)</code> 
             and the private key is 
-            <code>(d=<span class="key-param-d">173</span>, n=<span class="key-param-n">247</span>)</code>. 
+            <code>(d=<span class="key-param-d">19</span>, n=<span class="key-param-n">58</span>)</code>. 
             We're all set!
           </p>
         </div>
 
         <div class="arrow-def" data-from="alice" data-to="bob" data-direction="right">
-          Public Key: <strong>[<span class="key-param-e">5</span>, <span class="key-param-n">247</span>]</strong>
+          Public Key: <strong>[<span class="key-param-e">3</span>, <span class="key-param-n">58</span>]</strong>
         </div>
             
         <div class="chat-def" data-from="bob">
-          Got it, Alice. I'll use your public key <code>(e=<span class="key-param-e">5</span>, n=<span class="key-param-n">247</span>)</code> to encrypt messages for you.
+          Got it, Alice. I'll use your public key <code>(e=<span class="key-param-e">3</span>, n=<span class="key-param-n">58</span>)</code> to encrypt messages for you.
         </div>
 
         <h2 class="example-chapter">STEP 2: Encode and encrypt the message</h2>
@@ -145,51 +135,71 @@
 
         <div class="chat-def" data-from="bob">
           <p>
-            RSA encryption works on numbers, not on text. Therefore, I need to use ASCII encoding to convert 
-            the message into numerical values first. Each character turns into its corresponding ASCII code, 
-            like <strong>A</strong> is <code>65</code>, <strong>B</strong> is <code>66</code>, and so on. Let's break this down:
+            RSA encryption works on numbers, not on text. Therefore, I need to use mapping to convert the message into numerical 
+            values first. Each character turns into its corresponding numerical value,
+            like <strong>A</strong> is <code>0</code>, <strong>B</strong> is <code>1</code>, <strong>C</strong> is <code>2</code>, and so on. Let's break this down:
           </p>
           <p>
-            <code class="encoded">84, 104, 101, 32, 101, 97, 103, 108, 101, 32, 104, 97, 115, 32, 108, 97, 110, 100, 101, 100</code>
+            <code class="encoded">19 07 04 36 04 00 06 11 04 36 07 00 18 36 11 00 13 03 04 03</code>
           </p>
         </div>
 
         <div class="chat-def" data-from="bob">
           <p>
-            Now for the RSA encryption. Using Alice's public key <code>(e=<span class="key-param-e">5</span>, n=<span class="key-param-n">247</span>)</code>, 
+            Now for the RSA encryption. Using Alice's public key <code>(e=<span class="key-param-e">3</span>, n=<span class="key-param-n">58</span>)</code>, 
             I'll encrypt each ASCII number. This will create a series of encrypted numbers. 
             Secure and ready to send!
           </p>
           <p>
-            <code class="encrypted">145, 130, 43, 223, 43, 184, 12, 166, 43, 223, 130, 184, 20, 223, 166, 184, 2, 237, 43, 237</code>
+            <code class="encrypted">15 53 6 24 6 0 42 55 6 24 53 0 32 24 55 0 51 27 6 27</code>
           </p>
         </div>
+
+        <div class="chat-def" data-from="bob">
+          <p>
+            To make it compact, let's encode the encrypted message into a text back. Each numbers turns into its corresponding character value,
+            like <code>0</code> is <strong>A</strong>, <code>1</code> is <strong>B</strong>, <code>2</code> is <strong>C</strong>, and so on.
+          </p>
+          <p>
+            <code class="encrypted-encoded">PfGYGA}hGYfA7YhAd2G2</code>
+          </p>
+        </div>
+
 
         <div class="arrow-def" data-from="alice" data-to="bob" data-direction="left">
           <span style="overflow: hidden; display: inline-block; white-space: nowrap;">
             Message: 
           </span>
-          <strong class="encrypted ellipsis-text">
-            145, 130, 43, 223, 43, 184, 12, 166, 43, 223, 130, 184, 20, 223, 166, 184, 2, 237, 43, 237
+          <strong class="encrypted-encoded ellipsis-text">
+            PfGYGA}hGYfA7YhAd2G2
           </strong>
         </div>
 
         <h2 class="example-chapter">STEP 3: Decrypt and decode the message</h2>
         <div class="chat-def" data-from="alice">
           <p>
-            Ah, got a message from Bob! These numbers must be the encrypted message. I need to decrypt it 
-            using my private key <code>(d=<span class="key-param-d">173</span>, n=<span class="key-param-n">247</span>)</code>. 
+            Ah, got a message from Bob! First, I need to decode this text into numbers: 
+          </p>
+          <p>
+            <code class="encrypted-encoded-decoded">15 53 6 24 6 0 42 55 6 24 53 0 32 24 55 0 51 27 6 27</code>
+          </p>
+        </div>
+
+        <div class="chat-def" data-from="alice">
+          <p>
+            Now, with the numbers decoded, I'll be ready to decrypt using my private key.
+            <code>(d=<span class="key-param-d">19</span>, n=<span class="key-param-n">58</span>)</code>. 
             Let's get to it!
           </p>
           <p>
-            <code class="decrypted">84, 104, 101, 32, 101, 97, 103, 108, 101, 32, 104, 97, 115, 32, 108, 97, 110, 100, 101, 100</code>
+            <code class="decrypted">19 07 04 36 04 00 06 11 04 36 07 00 18 36 11 00 13 03 04 03</code>
           </p>
         </div>
 
         <div class="chat-def" data-from="alice">
           <p>
             Alright, with the decrypted numerical message in hand, I just need to convert 
-            these ASCII numbers back into our original text format. From numbers to characters - 
+            these numbers back into our original text format. From numbers to characters - 
             the final stage to revealing Bob's message!
           </p>
           <p>
