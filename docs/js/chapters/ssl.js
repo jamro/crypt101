@@ -3,8 +3,8 @@ function updateExample() {
   const [p, q] = $('#key-param-pq-input').val().split("|").map(Number)
   const {d, e, n} = generateRsaKeyPair(p, q)
   const sessionKey = $('#session-key').val().toUpperCase()
-  const sessionKeyEncrypted = rsaText(sessionKey, [e, n])
-  const decryptedSessionKey = rsaText(sessionKeyEncrypted, [d, n])
+  const sessionKeyEncrypted = encryptRsaText(sessionKey, [e, n])
+  const decryptedSessionKey = decryptRsaText(sessionKeyEncrypted, [d, n])
 
   const user = $('#user-input').val().toUpperCase()
   const pass = $('#pass-input').val().toUpperCase()

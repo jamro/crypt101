@@ -106,7 +106,6 @@
               <option value="41|2">p=41, q=2</option>
               <option value="43|2">p=43, q=2</option>
             </select>
-            <span id="pq-error" class="badge rounded-pill text-bg-danger ms-2 d-none">'p' and 'q' must be different</span>
           </p>
           <p>
             My public key is 
@@ -130,7 +129,7 @@
           <p>
             I need to securely communicate with Alice... The message I need him to receive is:
           </p>
-          <textarea id="message-input" data-chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz " class="w-100 form-control upper-case" onKeyUp="updateExample2()" onChange="updateExample2()">The eagle has landed</textarea>
+          <textarea id="message-input" data-chars="01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz " class="w-100 form-control upper-case" onKeyUp="updateExample2()" onChange="updateExample2()">The eagle has landed</textarea>
         </div>
 
         <div class="chat-def" data-from="bob">

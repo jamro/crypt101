@@ -41,6 +41,7 @@ $(document).ready(function() {
   addSection('Asymmetric Key', 'asymmetric_key')
   addMenuLink('RSA Basics', 'asymmetric_key_basic.html', '#asymmetric_key')
   addMenuLink('RSA Text Encryption', 'asymmetric_key_text.html', '#asymmetric_key')
+  addMenuLink('Digital Signature', 'signature.html')
   addMenuLink('SSL Communication', 'ssl.html')
 
 

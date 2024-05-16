@@ -1,0 +1,225 @@
+
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>Crypt101</title>
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="./iconfont/material-icons.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <main class="d-flex flex-nowrap">
+      <div id="side-panel" class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark">
+        <a href="./index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <span id="side-title" class="fs-4">Crypt 101</span>
+        </a>
+        <hr>
+        <ul id="side-menu" class="nav nav-pills flex-column mb-auto">
+
+        </ul>
+      </div>
+      <div id="content" class="p-3 ps-5">
+        <h1>Digital Signature</h1>
+        <p>
+          A digital signature is a cryptographic technique used to validate the authenticity and integrity of 
+          a message, software, or digital document. It's the digital equivalent of a handwritten signature or 
+          a stamped seal but offers far more inherent security.
+        </p>
+        <h1>Signature Process</h1>
+        <p>
+          A digital signature works by using a combination of <a href="./hashing.html">hashing</a>" and 
+          <a href="./asymmetric_key_basic.html">asymmetric key encryption</a>. First, a hash function generates a unique, 
+          fixed-size digest from the original message, ensuring that even a small change in the message will result 
+          in a drastically different hash. The sender then encrypts this hash with their private key, 
+          creating the digital signature.
+        </p>
+        <h2>Verification Process</h2>
+        <p>
+          When the recipient gets the message, they decrypt the signature using the sender's public key to obtain 
+          the original hash. Simultaneously, they hash the received message themselves and compare it to the 
+          decrypted hash. If both hashes match, it confirms that the message has not been altered 
+          and is indeed from the claimed sender, ensuring both the message's integrity and authenticity.
+        </p>
+        <h1>Live Example</h1>
+        <div class="alert alert-primary small">
+          <strong>NOTE:</strong> The algorithms in the example below are simplified and not cryptographically secure, 
+          designed mainly for educational purposes. They do not address all corner cases and are unsuitable 
+          for practical encryption tasks. Real-world cryptographic methods are far more complex and secure, 
+          rigorously designed to handle various security threats and edge cases.
+        </div>
+        <span 
+          class="persona-def example-def" 
+          id="alice" 
+          data-color="success" 
+          data-name="Alice" 
+          data-icon="face_4"
+          data-side="left"
+        ></span>
+        <span 
+          class="persona-def example-def" 
+          id="bob" 
+          data-color="warning" 
+          data-name="Bob" 
+          data-icon="face_5"
+          data-side="right"
+        ></span>
+        <h2 class="example-chapter">STEP 1: Create signature</h2>
+        <div class="chat-def" data-from="alice">
+          <p>
+            I need to create an <a href="./asymmetric_key_basic.html">asymmetric key pair</a> to sign documents in a secure and tamper-proof way. 
+            Let's do it: <select id="key-param-pq-input" class="form-select ms-2" style="width: auto; display: inline-block; padding: 0 2em 0 0.5em" onChange="updateExample()">
+              <option value="2|29" selected>p=2, q=29</option>
+              <option value="2|31">p=2, q=31</option>
+              <option value="2|37">p=2, q=37</option>
+              <option value="2|41">p=2, q=41</option>
+              <option value="2|43">p=2, q=43</option>
+              <option value="3|17">p=3, q=17</option>
+              <option value="3|19">p=3, q=19</option>
+              <option value="3|23">p=3, q=23</option>
+              <option value="3|29">p=3, q=29</option>
+              <option value="3|31">p=3, q=31</option>
+              <option value="5|11">p=5, q=11</option>
+              <option value="5|13">p=5, q=13</option>
+              <option value="5|17">p=5, q=17</option>
+              <option value="7|11">p=7, q=11</option>
+              <option value="7|13">p=7, q=13</option>
+              <option value="11|5">p=11, q=5</option>
+              <option value="11|7">p=11, q=7</option>
+              <option value="13|5">p=13, q=5</option>
+              <option value="13|7">p=13, q=7</option>
+              <option value="17|3">p=17, q=3</option>
+              <option value="17|5">p=17, q=5</option>
+              <option value="19|3">p=19, q=3</option>
+              <option value="23|3">p=23, q=3</option>
+              <option value="29|2">p=29, q=2</option>
+              <option value="29|3">p=29, q=3</option>
+              <option value="31|2">p=31, q=2</option>
+              <option value="31|3">p=31, q=3</option>
+              <option value="37|2">p=37, q=2</option>
+              <option value="41|2">p=41, q=2</option>
+              <option value="43|2">p=43, q=2</option>
+            </select>
+          </p>
+          <p class="text-center">
+            <span class="badge bg-primary d-inline-flex align-items-center bg-primary">
+              <span class="material-icons me-2">key</span>
+              <span class="m-2">Public Key<br/><small class="pub-key">[19, 58]</small></span>
+            </span>
+            <span class="badge bg-primary d-inline-flex align-items-center bg-danger">
+              <span class="material-icons me-2">key</span>
+              <span class="m-2">Private Key<br/><small class="priv-key">[3, 58]</small></span>
+            </span>
+          </p>
+        </div>
+        <div class="chat-def" data-from="alice">
+          I need to securely share my public key with Bob so he knows it's mine. This will let me sign documents later.
+        </div>
+        <div class="arrow-def" data-from="alice" data-to="bob">
+          <p class="text-center mt-2">
+            <span class="badge bg-primary d-inline-flex align-items-center bg-primary">
+              <span class="material-icons me-2">key</span>
+              <span class="m-2">Public Key<br/><small class="pub-key">[19, 58]</small></span>
+            </span>
+          </p>
+        </div>
+        <h2 class="example-chapter">STEP 2: Sign document</h2>
+
+        <div class="chat-def" data-from="alice">
+          <p>
+            I have a document that I want to send to Bob. It has to be secure and tamper-proof.
+          </p>
+          <p>
+            <textarea id="doc-input" data-chars="1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz, " class="w-100 form-control upper-case" onKeyUp="updateExample()" onChange="updateExample()">COMPANY REVENUE 3,439,674</textarea>
+          </p>
+        </div>
+        <div class="chat-def" data-from="alice">
+          <p>
+            To sign it, I will first hash the document using a <a href="./hashing.html">hash function</a> to get a unique digest. I will use 
+            <strong>Fletcher 32</strong> for sake of simplicity.
+          </p>
+          <p>
+            The hash is: <code id="sign-hash" class="doc-sign-hash">CAB871D1</code>
+          </p>
+        </div>
+        <div class="chat-def" data-from="alice">
+          <p>
+            Now I can encrypt the hash <code class="sign-hash">92FE</code> with my private key <code class="priv-key">[3, 58]</code> to create the signature.
+          </p>
+          <p>
+            The signature is: <code class="signature-value">IAB0iC2C</code>
+          </p>
+        </div>
+        <div class="chat-def" data-from="alice">
+          <p>
+            I'll send the document and the signature to Bob. He can verify the document's integrity and authenticity using my public key.
+          </p>
+        </div>
+        <div class="arrow-def" data-from="alice" data-to="bob" data-direction="right">
+          <p class="mb-0">
+            <span style="overflow: hidden; display: inline-block; white-space: nowrap;">
+              Document: 
+            </span>
+            <strong class="encrypted-value ellipsis-text doc-value">
+              COMPANY REVENUE 3,439,674
+            </strong>
+          </p>
+          <p class="mt-0">
+            Signature: <code class="signature-value">IAB0iC2C</code>
+          </p>
+        </div>
+        <h2 class="example-chapter">STEP 3: Verify signature</h2>
+        <div class="chat-def" data-from="bob">
+          <p>
+            I've received a document and a signature from Alice. I need to verify that the document is authentic and untampered.
+            <div class="card">
+              <div class="card-body">
+                <p class="card-text doc-value">COMPANY REVENUE 3,439,674</p>
+              </div>
+            </div>
+          </p>
+          <p>
+            I'll first hash the document to get the digest.
+          </p>
+          <p>
+            The hash is: <code class="doc-sign-hash">CAB871D1</code>
+          </p>
+        </div>
+        <div class="chat-def" data-from="bob">
+          <p>
+            Now I'll decrypt the signature <code class="signature-value">IAB0iC2C</code> using Alice's public key 
+            <code class="pub-key">[19, 58]</code> to get the original hash.
+          </p>
+          <p>
+            The decrypted hash is: <code class="verify-hash">CAB871D1</code>
+          </p>
+        </div>
+        <div class="chat-def" data-from="bob">
+          <p>
+            I'll compare the decrypted hash <code class="verify-hash">CAB871D1</code> with the hash of the document 
+            <code class="doc-sign-hash">CAB871D1</code> to verify the document's authenticity.
+          </p>
+          <p>
+            They are the same! The document is authentic and untampered.
+          </p>
+      </div>
+    </main>
+    <script src="./js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="./js/sidemenu.js"></script>
+    <script src="./js/lib/asymmetric_key.js"></script>
+    <script src="./js/lib/hashing.js"></script>
+    <script src="./js/chapters/signature.js"></script>
+    <script src="./js/example.js"></script>
+    <script>
+      $(document).ready(function() {
+        updateExample()
+      })
+    </script>
+  </body>
+</html>

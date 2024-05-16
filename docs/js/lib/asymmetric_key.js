@@ -41,7 +41,7 @@ function generateRsaKeyPair(p, q) {
   return { n, e, d };
 }
 
-function rsaText(text, key) {
+function encryptRsaText(text, key) {
 
   function encryptRsaNumber(msg, e, n) {
     let result = 1;
@@ -67,6 +67,37 @@ function rsaText(text, key) {
   const encoded = msg.split('').map(c => inputChars.indexOf(c))
   const encrypted = encoded.map(c => encryptRsaNumber(c, key[0], key[1]))
   const decoded = encrypted.map(c => allChars[c]).join('')
+
+  return decoded
+}
+
+
+function decryptRsaText(text, key) {
+
+  function encryptRsaNumber(msg, e, n) {
+    let result = 1;
+    msg = Number(msg) % n;
+    while (e > 0) {
+      if (e % 2 == 1)
+        result = (result * msg) % n;
+      e = Math.floor(e / 2);
+      msg = (msg * msg) % n;
+    }
+    return result;
+  }
+
+  const inputChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 .,-:{}[]\"'!"
+  const allChars =  inputChars + "abcdefghijklmnopqrstuvwxyz@#$%^&*()_+=<>?/|~`;"
+
+  const msg = text
+    .toUpperCase()
+    .split('')
+    .filter(c => inputChars.includes(c))
+    .join('')
+
+  const encryptedEncodedDecoded = text.split('').map(c => allChars.indexOf(c))
+  const decrypted = encryptedEncodedDecoded.map(c => encryptRsaNumber(c, key[0], key[1]))
+  const decoded = decrypted.map(c => inputChars[c]).join('')
 
   return decoded
 }

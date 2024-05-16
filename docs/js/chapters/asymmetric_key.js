@@ -3,24 +3,24 @@ const ALL_CHARS =  INPUT_CHARS + "abcdefghijklmnopqrstuvwxyz@#$%^&*()_+=<>?/|~`;
 
 function gcd(a, b) {
   if (b === 0)
-      return a;
+    return a;
   else
-      return gcd(b, a % b);
+    return gcd(b, a % b);
 }
 
 function extendedEuclidean(a, b) { 
-    if (a === 0) { 
-      return [b, 0, 1]; 
-    } else {
-      let [g, x, y] = extendedEuclidean(b % a, a); 
-      return [g, y - Math.floor(b / a) * x, x]; 
-    }
+  if (a === 0) { 
+    return [b, 0, 1]; 
+  } else {
+    let [g, x, y] = extendedEuclidean(b % a, a); 
+    return [g, y - Math.floor(b / a) * x, x]; 
+  }
 } 
 
 function findE(phi) {
   for (let e = 2; e < phi; e++) {
-      if (gcd(e, phi) === 1)
-          return e;
+    if (gcd(e, phi) === 1)
+      return e;
   }
   return null;
 }
@@ -99,17 +99,6 @@ function updateExample1() {
 function updateExample2() {
   const [p, q] = $('#key-param-pq-input').val().split("|").map(Number)
 
-  if(p === q) {
-    $('#key-param-p-input').addClass('border-danger')
-    $('#key-param-q-input').addClass('border-danger')
-    $('#pq-error').removeClass('d-none')
-    return
-  } else {
-    $('#key-param-p-input').removeClass('border-danger')
-    $('#key-param-q-input').removeClass('border-danger')
-    $('#pq-error').addClass('d-none')
-  }
-  
   const n = p * q
   const phi = (p - 1) * (q - 1)
   const e = findE(phi)
